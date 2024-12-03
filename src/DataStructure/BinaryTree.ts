@@ -45,6 +45,6 @@ export class BinarySearchTree<T> {
       return this.searchNode(node.right, value)
     }
 
-    return false;
+    return false;   
   }
 }

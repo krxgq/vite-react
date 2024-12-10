@@ -1,88 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { getGenerativeAIResponse } from './api/generativeAI';
+import Grid from '@mui/material/Grid2';
+import { Box } from '@mui/material';
+import LocationImage from './ai-game/frontend/ui-elements/images/placeholder.svg'
+import ImageBox from './ai-game/frontend/ui-elements/ImageBox';
+import Creature from './ai-game/backend/entities/creature';
+import Weapon from './ai-game/backend/entities/weapon';
+import PlayerHUD from './ai-game/frontend/ui-elements/playerHUD/PlayerHUDMain';
 
-interface Story {
-  id: number;
-  text: string;
-  options: string[];
+import ColorSettings from './ai-game/frontend/ColorSettings';
+import './App.css'
+
+const sword : Weapon = { //Test zbraň
+  name: "Meč",
+  damage: 2
+}
+const player : Creature = { //Test staty
+  name: "Player",
+  health: 10,
+  maxHealth: 10,
+  currentWeapon: sword
 }
 
-const App: React.FC = () => {
-  const [story, setStory] = useState<Story | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+function App() {
+  return <Box>
+          <Grid container spacing={0} width={'100vw'} height={'100vh'}> {/*Rozděluje herní plochu na 4 pole*/}
+            <Grid size={6} border={'solid'} borderColor={ColorSettings.mainBorder} height={'50vh'}> {/*Zde se bude zobrazovat aktuální lokace*/}
 
-  useEffect(() => {
-    const fetchInitialStory = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/story/1');
-        setStory(response.data);
-      } catch (err) {
-        setError('Failed to fetch the initial story.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchInitialStory();
-  }, []);
+              <ImageBox imgSrc={LocationImage}/>
 
-  const handleOptionSelect = async (option: string) => {
-    if (!story) return;
+            </Grid>
+            <Grid size={6} border={'solid'} borderColor={ColorSettings.mainBorder} height={'50vh'}> {/*Zde se bude zobrazovat aktuální nepřítel*/}
 
-    setLoading(true);
-    setError(null);
+              Enemy placeholder
 
-    const prompt = `
-${story.text}
-Player chooses: ${option}
-Continue the story in the same style. Provide 4 options for the player's next action, numbered 1 to 4. Format your response as follows:
+            </Grid>
 
-Story:
-<Continue the story here>
+            <Grid size={6} border={'solid'} borderColor={ColorSettings.mainBorder} height={'50vh'}> {/*Zde se bude zobrazovat text popisující příběh, souboje nebo nalezené předměty*/}
 
-Options:
-1. <Option 1>
-2. <Option 2>
-3. <Option 3>
-4. <Option 4>
-`;
+              Story text placeholder
 
-    try {
-      const response = await getGenerativeAIResponse(prompt);
+            </Grid>
+            <Grid size={6} border={'solid'} borderColor={ColorSettings.mainBorder} height={'50vh'}> {/*Zde se bude zobrazovat hráčův inventář a jeho statistiky*/}
 
-      const newStory = {
-        id: story.id + 1,
-        text: response.text,
-        options: response.options,
-      };
+            <PlayerHUD/>
 
-      setStory(newStory);
-    } catch (err) {
-      console.error(err);
-      setError('Failed to fetch the next part of the story.');
-    } finally {
-      setLoading(false);
-    }
-  };
+            </Grid>
+          </Grid>
+        </Box>
 
-  if (loading) {
-    return (
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        <h1>Abandoned City Adventure</h1>
-        <p>Loading...</p>
-      </div>
-    );
-  }
+        
+  
+ 
 
-  if (error) {
-    return (
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        <h1>Abandoned City Adventure</h1>
-        <p>{error}</p>
-      </div>
-    );
-  }
+  
+ 
+
+}
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>

@@ -1,0 +1,308 @@
+{
+  "player": {
+    "name": "Hero",
+    "health": 100,
+    "maxHealth": 100,
+    "currentWeapon": 0
+  },
+  "weapons": [
+    {
+      "id": 0,
+      "name": "Fists",
+      "damage": 10
+    },
+    {
+      "id": 1,
+      "name": "Sword of Destiny",
+      "damage": 50
+    },
+    {
+      "id": 2,
+      "name": "Longbow",
+      "damage": 35
+    },
+    {
+      "id": 3,
+      "name": "Magic Staff",
+      "damage": 40
+    },
+    {
+      "id": 4,
+      "name": "Dagger of Shadows",
+      "damage": 25
+    }
+  ],
+  "creatures": [
+    {
+      "id": 1,
+      "name": "Goblin",
+      "health": 30,
+      "maxHealth": 30,
+      "currentWeapon": 1
+    },
+    {
+      "id": 2,
+      "name": "Dragon",
+      "health": 500,
+      "maxHealth": 500,
+      "currentWeapon": 2
+    },
+    {
+      "id": 3,
+      "name": "Giant Spider",
+      "health": 150,
+      "maxHealth": 150,
+      "currentWeapon": 4
+    },
+    {
+      "id": 4,
+      "name": "Necromancer",
+      "health": 200,
+      "maxHealth": 200,
+      "currentWeapon": 3
+    }
+  ],
+  "story": {
+    "start": {
+      "id": "start",
+      "text": "You stand at the entrance of a dark cave...",
+      "fight": false,
+      "choices": [
+        {
+          "choice": "Enter the cave",
+          "next": "enterCave"
+        },
+        {
+          "choice": "Walk away",
+          "next": "walkAway"
+        }
+      ]
+    },
+    "enterCave": {
+      "id": "enterCave",
+      "text": "As you enter the cave, a goblin appears!",
+      "fight": true,
+      "choices": [
+        {
+          "choice": "Fight the goblin",
+          "next": "fightGoblin"
+        },
+        {
+          "choice": "Run away",
+          "next": "runAway"
+        }
+      ]
+    },
+    "walkAway": {
+      "id": "walkAway",
+      "text": "You decide to walk away from the cave and head back home.",
+      "fight": false,
+      "choices": [
+        {
+          "choice": "End your journey",
+          "next": "end"
+        }
+      ]
+    },
+    "swordFound": {
+      "text": "You pull the sword from the ground and feel a surge of energy. The sword seems ancient, with a glowing symbol etched into its blade. As you look up, you hear the growl of something nearby. A Goblin emerges from the trees, ready to fight. It wields a sword just like yours.",
+      "choices": [
+        {
+          "choice": "Fight the Goblin",
+          "next": "fightGoblin"
+        },
+        {
+          "choice": "Attempt to negotiate",
+          "next": "negotiateGoblin"
+        },
+        {
+          "choice": "Run into the forest",
+          "next": "runIntoForest"
+        },
+        {
+          "choice": "Hide and wait",
+          "next": "hideGoblin"
+        }
+      ]
+    },
+    "fightGoblin": {
+      "text": "You raise your Sword of Destiny and charge at the Goblin. It swings its own sword, but your strikes are stronger. After a short, fierce battle, the Goblin falls to the ground. You notice a pouch of gold and a map beside it. The map seems to lead to a cave in the mountains.",
+      "choices": [
+        {
+          "choice": "Take the gold and map, head for the cave",
+          "next": "mountainCave"
+        },
+        {
+          "choice": "Explore more of the forest",
+          "next": "exploreForest"
+        },
+        {
+          "choice": "Rest and heal before moving on",
+          "next": "restGoblin"
+        },
+        {
+          "choice": "Leave the forest entirely and head home",
+          "next": "end"
+        }
+      ]
+    },
+    "negotiateGoblin": {
+      "text": "You try to reason with the Goblin, offering him some of your food. The Goblin snarls but hesitates. After a tense moment, he lowers his sword and motions for you to follow him. He takes you to a hidden glade where a magical tree grows.",
+      "choices": [
+        {
+          "choice": "Inspect the tree",
+          "next": "magicTree"
+        },
+        {
+          "choice": "Thank the Goblin and move on",
+          "next": "moveOn"
+        },
+        {
+          "choice": "Ask the Goblin for help with the dragon",
+          "next": "goblinHelps"
+        },
+        {
+          "choice": "Leave immediately",
+          "next": "end"
+        }
+      ]
+    },
+    "runIntoForest": {
+      "text": "You quickly turn and dash into the forest. The trees seem to close in around you, and the sounds of the Goblin grow fainter. As you push forward, you stumble upon a Giant Spider webbing a trap. It hisses as it spots you.",
+      "choices": [
+        {
+          "choice": "Fight the Giant Spider",
+          "next": "fightSpider"
+        },
+        {
+          "choice": "Try to sneak past the spider",
+          "next": "sneakPastSpider"
+        },
+        {
+          "choice": "Climb a tree to avoid it",
+          "next": "climbTree"
+        },
+        {
+          "choice": "Use the sword to cut the web",
+          "next": "cutWeb"
+        }
+      ]
+    },
+    "fightSpider": {
+      "text": "You prepare for battle against the Giant Spider. Its venomous fangs snap at you, but your sword strikes true. After a hard fight, you slay the beast. However, the venom begins to take its toll. You search the spider's den and find a hidden chest containing a mysterious staff.",
+      "choices": [
+        {
+          "choice": "Take the staff and rest",
+          "next": "restSpider"
+        },
+        {
+          "choice": "Keep moving despite the poison",
+          "next": "moveOnSpider"
+        },
+        {
+          "choice": "Head back to the Goblin's glade",
+          "next": "goblinGlade"
+        },
+        {
+          "choice": "Rest and think about your next steps",
+          "next": "end"
+        }
+      ]
+    },
+    "mountainCave": {
+      "text": "The path to the cave is long and difficult, but you finally arrive. Inside, you find a Dragon guarding a pile of treasure. It eyes you as you enter, and with a roar, it leaps toward you. The Dragon is armed with a longbow.",
+      "choices": [
+        {
+          "choice": "Fight the Dragon",
+          "next": "fightDragon"
+        },
+        {
+          "choice": "Try to talk to the Dragon",
+          "next": "talkDragon"
+        },
+        {
+          "choice": "Use the staff to defend yourself",
+          "next": "useStaff"
+        },
+        {
+          "choice": "Run away",
+          "next": "runAway"
+        }
+      ]
+    },
+    "fightDragon": {
+      "text": "The battle with the Dragon is intense. You swing your sword with all your might, but the Dragon’s fire breath is fierce. Finally, with one last blow, you defeat the beast. You stand victorious, but exhausted. The treasure is now yours.",
+      "fight": true,
+      "win": "mountainCave",
+      "lose": "end"
+    },
+    "talkDragon": {
+      "text": "You attempt to talk to the Dragon, offering a truce. The Dragon, surprisingly, listens. It tells you that it has been guarding the treasure for centuries and has grown tired of the responsibility. It offers you a portion of the treasure if you promise to never return.",
+      "choices": [
+        {
+          "choice": "Accept the Dragon's offer",
+          "next": "dragonOffer"
+        },
+        {
+          "choice": "Refuse the offer and fight",
+          "next": "fightDragon"
+        },
+        {
+          "choice": "Leave the cave peacefully",
+          "next": "peacefulExit"
+        },
+        {
+          "choice": "Ask the Dragon about the Necromancer",
+          "next": "dragonNecromancer"
+        }
+      ]
+    },
+    "useStaff": {
+      "text": "You raise the staff, and a bright light erupts, momentarily blinding the Dragon. When the light fades, the Dragon is gone, vanished into the air. The treasure is unguarded. You have won the battle without a fight.",
+      "choices": [
+        {
+          "choice": "Take the treasure",
+          "next": "treasureTaken"
+        },
+        {
+          "choice": "Leave the treasure and explore further",
+          "next": "exploreCave"
+        },
+        {
+          "choice": "Search for clues about the Necromancer",
+          "next": "necromancerClues"
+        },
+        {
+          "choice": "Exit the cave",
+          "next": "peacefulExit"
+        }
+      ]
+    },
+    "runAway": {
+      "text": "You turn and run, heart pounding as you escape the Dragon's lair. You find yourself outside in the fresh air. The adventure continues, but the Dragon's treasure remains untouched.",
+      "choices": [
+        {
+          "choice": "Head to a nearby town",
+          "next": "town"
+        },
+        {
+          "choice": "Rest for a while before continuing",
+          "next": "end"
+        },
+        {
+          "choice": "Search for a new path",
+          "next": "newPath"
+        },
+        {
+          "choice": "Return to the forest",
+          "next": "forestPath"
+        }
+      ]
+    },
+    "end": {
+      "text": "Your journey ends here.",
+      "fight": false,
+      "choices": []
+    }
+  }
+}

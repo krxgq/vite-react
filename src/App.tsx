@@ -56,4 +56,26 @@ function App() {
 
 }
 
-export default App
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1>Abandoned City Adventure</h1>
+      {story && (
+        <>
+          <p>{story.text}</p>
+          <h3>What will you do?</h3>
+          <ul>
+            {story.options.map((option, index) => (
+              <li key={index}>
+                <button onClick={() => handleOptionSelect(option)}>
+                  {option}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default App;

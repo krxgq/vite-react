@@ -11,6 +11,9 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/material": "^6.1.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -31,9 +34,14 @@
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
   },
+  "peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
+  },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
   "license": "ISC"
+  
 }

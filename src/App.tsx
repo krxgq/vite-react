@@ -1,16 +1,10 @@
-import React from 'react'
-import { BinarySearchTree as bst } from './DataStructure/BinaryTree'
+import './App.css'
 
-const App = () => {
-  const tree = new bst<number>()
-  tree.insert(10)
-  tree.insert(5)
-  tree.insert(15)
-  tree.insert(2)
-
-  console.log(tree.search(5)) // true
-  console.log(tree.search(3)) // false
-  return <React.StrictMode></React.StrictMode>
+function App() {
+  return <div>
+    <h1>React TypeScript App</h1>
+    <p>React TypeScript App is running successfully.</p>
+  </div>
 }
 
 export default App

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import Weapon from '../entities/weapon';
-import Creature from '../entities/creature';
-import Player from '../entities/player';
-import StoryNode from '../entities/storyNode';
+import { Weapon } from '../types/weapon';
+import { Creature } from '../types/creature';
+import { Player } from '../types/player';
+import { StoryNode } from '../types/storyTypes';
 
 // Base URL for JSON Server
 const BASE_URL = 'http://localhost:3001';
@@ -10,37 +10,44 @@ const BASE_URL = 'http://localhost:3001';
 // ** Functions for Weapons **
 export const getWeapons = async (): Promise<Weapon[]> => {
   const response = await axios.get(`${BASE_URL}/weapons`);
-  return response.data.map((weaponData: any) => new Weapon(weaponData));
+  return response.data as Weapon[];
 };
 
 // ** Functions for Creatures **
 export const getCreatures = async (): Promise<Creature[]> => {
   const response = await axios.get(`${BASE_URL}/creatures`);
-  return response.data.map((creatureData: any) => new Creature(creatureData));
+  return response.data as Creature[];
+};
+
+export const getCreature = async (creatureId: number): Promise<Creature> => {
+  const response = await axios.get(`${BASE_URL}/creatures/${creatureId}`);
+  return response.data as Creature;
+};
+
+export const updateCreatureHealth = async (creatureId: number, newHealth: number): Promise<void> => {
+  await axios.patch(`${BASE_URL}/creatures/${creatureId}`, { health: newHealth });
 };
 
 // ** Functions for Story Nodes **
 export const getStoryNode = async (nodeId: string): Promise<StoryNode> => {
   const response = await axios.get(`${BASE_URL}/story/${nodeId}`);
-  return new StoryNode(response.data);
+  return response.data as StoryNode;
 };
 
 // **Player Functions**
 
 // Get player data
 export const getPlayer = async (): Promise<Player> => {
-  const response = await axios.get(`${BASE_URL}/player/1`); // Assuming player has ID 1
-  return response.data;
+  const response = await axios.get(`${BASE_URL}/player/1`);
+  return response.data as Player;
 };
 
 // Update player's health
-export const updatePlayerHealth = async (newHealth: number): Promise<Player> => {
-  const response = await axios.patch(`${BASE_URL}/player/1`, { health: newHealth });
-  return response.data;
+export const updatePlayerHealth = async (newHealth: number): Promise<void> => {
+  await axios.patch(`${BASE_URL}/player/1`, { health: newHealth });
 };
 
 // Update player's weapon
-export const updatePlayerWeapon = async (weaponId: number): Promise<Player> => {
-  const response = await axios.patch(`${BASE_URL}/player/1`, { currentWeapon: weaponId });
-  return response.data;
+export const updatePlayerWeapon = async (weaponId: number): Promise<void> => {
+  await axios.patch(`${BASE_URL}/player/1`, { currentWeapon: weaponId });
 };

@@ -41,13 +41,17 @@ export const updateCreatureHealth = async (creatureId: number, newHealth: number
 export const getStoryNodes = async (): Promise<StoryNode[]> => {
   const response = await axios.get(`${BASE_URL}/story`);
   const parsedStoryNodes = JSON.parse(JSON.stringify(response.data));
-  return parsedStoryNodes as StoryNode[];
+  
+  // Convert the object into an array of story nodes
+  return Object.values(parsedStoryNodes) as StoryNode[];
 };
+
 
 export const getStoryNode = async (nodeId: string): Promise<StoryNode | undefined> => {
   const storyNodes = await getStoryNodes();
   return storyNodes.find((node: StoryNode) => node.id === nodeId);
 };
+
 
 // **Player Functions**
 

@@ -1,0 +1,228 @@
+{
+  "player": {
+    "id": 1,
+    "name": "Hero",
+    "health": 100,
+    "maxHealth": 100,
+    "currentWeapon": {
+      "id": 0,
+      "name": "Fists",
+      "damage": 10
+    }
+  },
+  "weapons": [
+    {
+      "id": 0,
+      "name": "Fists",
+      "damage": 10
+    },
+    {
+      "id": 1,
+      "name": "Sword of Destiny",
+      "damage": 50
+    },
+    {
+      "id": 2,
+      "name": "Longbow",
+      "damage": 35
+    },
+    {
+      "id": 3,
+      "name": "Magic Staff",
+      "damage": 40
+    },
+    {
+      "id": 4,
+      "name": "Dagger of Shadows",
+      "damage": 25
+    }
+  ],
+  "creatures": [
+    {
+      "id": 1,
+      "name": "Goblin",
+      "health": 30,
+      "maxHealth": 30,
+      "currentWeapon": {
+        "id": 1,
+        "name": "Sword of Destiny",
+        "damage": 50
+      }
+    },
+    {
+      "id": 2,
+      "name": "Dragon",
+      "health": 500,
+      "maxHealth": 500,
+      "currentWeapon": {
+        "id": 2,
+        "name": "Longbow",
+        "damage": 35
+      }
+    },
+    {
+      "id": 3,
+      "name": "Giant Spider",
+      "health": 150,
+      "maxHealth": 150,
+      "currentWeapon": {
+        "id": 4,
+        "name": "Dagger of Shadows",
+        "damage": 25
+      }
+    },
+    {
+      "id": 4,
+      "name": "Necromancer",
+      "health": 200,
+      "maxHealth": 200,
+      "currentWeapon": {
+        "id": 3,
+        "name": "Magic Staff",
+        "damage": 40
+      }
+    }
+  ],
+  "story": {
+    "start": {
+      "id": "start",
+      "text": "You stand at the entrance of a dark cave...",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Enter the cave",
+          "nextNodeId": "enterCave"
+        },
+        {
+          "choiceText": "Walk away",
+          "nextNodeId": "walkAway"
+        }
+      ]
+    },
+    "enterCave": {
+      "id": "enterCave",
+      "text": "As you enter the cave, a goblin appears!",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Fight the goblin",
+          "nextNodeId": "fightGoblin"
+        },
+        {
+          "choiceText": "Run away",
+          "nextNodeId": "runAway"
+        }
+      ]
+    },
+    "fightGoblin": {
+      "id": "fightGoblin",
+      "text": "You raise your sword and charge at the goblin. The fight is intense.",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Fight",
+          "nextNodeId": "fightResultGoblin"
+        },
+        {
+          "choiceText": "Run away",
+          "nextNodeId": "runAway"
+        }
+      ]
+    },
+    "fightResultGoblin": {
+      "id": "fightResultGoblin",
+      "text": "The outcome of the fight with the goblin is being processed.",
+      "fight": true,
+      "options": [
+        {
+          "choiceText": "Win",
+          "nextNodeId": "treasureTaken"
+        },
+        {
+          "choiceText": "End",
+          "nextNodeId": "gameOver"
+        }
+      ]
+    },
+    "runAway": {
+      "id": "runAway",
+      "text": "You turn and run, heart pounding.",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Head to a nearby town",
+          "nextNodeId": "town"
+        }
+      ]
+    },
+    "mountainCave": {
+      "id": "mountainCave",
+      "text": "You arrive at the mountain cave. The dragon awaits.",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Fight the Dragon",
+          "nextNodeId": "fightDragon"
+        },
+        {
+          "choiceText": "Try to talk to the Dragon",
+          "nextNodeId": "talkDragon"
+        }
+      ]
+    },
+    "talkDragon": {
+      "id": "talkDragon",
+      "text": "You attempt to talk to the Dragon. It growls menacingly but seems to understand.",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Back away cautiously",
+          "nextNodeId": "dragonTalkEnd"
+        }
+      ]
+    },
+    "fightDragon": {
+      "id": "fightDragon",
+      "text": "You prepare for battle with the Dragon.",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Fight",
+          "nextNodeId": "fightResultDragon"
+        }
+      ]
+    },
+    "fightResultDragon": {
+      "id": "fightResultDragon",
+      "text": "The Dragon fight result is being processed by the system.",
+      "fight": true,
+      "options": [
+        {
+          "choiceText": "Win",
+          "nextNodeId": "treasureTaken"
+        },
+        {
+          "choiceText": "End",
+          "nextNodeId": "gameOver"
+        }
+      ]
+    },
+    "treasureTaken": {
+      "id": "treasureTaken",
+      "text": "You defeated the Dragon and claimed its treasure.",
+      "fight": false,
+      "options": [
+        {
+          "choiceText": "Continue your adventure",
+          "nextNodeId": "endGame"
+        }
+      ]
+    },
+    "gameOver": {
+      "id": "gameOver",
+      "text": "Game Over! You have been defeated.",
+      "fight": false,
+      "options": []
+    }
+  }
+}

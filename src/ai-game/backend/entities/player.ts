@@ -1,6 +1,6 @@
 import { Weapon } from '../types/weapon';
 import { Creature } from '../types/creature';
-import { getPlayer as getPlayerAPI, updatePlayerHealth as updatePlayerHealthAPI, updatePlayerWeapon as updatePlayerWeaponAPI, getWeapons } from '../api/jsonDB';
+import { getPlayer as getPlayerAPI, updatePlayerHealth as updatePlayerHealthAPI, updatePlayerWeapon as updatePlayerWeaponAPI } from '../api/jsonDB';
 import { Player } from '../types/player';
 
 export async function createPlayer(): Promise<Player> {
@@ -26,13 +26,9 @@ export async function playerUpdateHealth(player: Player, newHealth: number): Pro
 }
 
 export async function playerChangeWeapon(player: Player, newWeaponId: number): Promise<void> {
-  const weaponData = await getWeapons();
-  const newWeapon = weaponData.find(weapon => weapon.id === newWeaponId);
-  if (!newWeapon) {
-    throw new Error('New weapon not found');
-  }
-  player.currentWeapon = newWeapon;
   await updatePlayerWeaponAPI(newWeaponId);
+  const updatedPlayer = await getPlayerAPI();
+  player.currentWeapon = updatedPlayer.currentWeapon;
 }
 
 export function playerAttack(player: Player, target: Creature): void {

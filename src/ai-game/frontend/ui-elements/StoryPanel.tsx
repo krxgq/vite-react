@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { getStoryNode } from "../../backend/api/jsonDB";
@@ -16,7 +15,11 @@ const StoryPanel: React.FC<HUDProps> = ({ onFight }) => {
     const fetchInitialNode = async () => {
       try {
         const initialNode = await getStoryNode("start");
-        setCurrentNode(initialNode);
+        if (initialNode) {
+          setCurrentNode(initialNode);
+        } else {
+          console.error("Initial story node not found.");
+        }
       } catch (error) {
         console.error("Error fetching the initial story node:", error);
       }
@@ -30,6 +33,11 @@ const StoryPanel: React.FC<HUDProps> = ({ onFight }) => {
     try {
       const nextNode = await getStoryNode(nextNodeId);
 
+      if (!nextNode) {
+        console.error(`Story node with ID ${nextNodeId} not found.`);
+        return;
+      }
+
       if (nextNode.fight) {
         // If a fight is required, call the onFight method
         onFight(nextNodeId);
@@ -42,8 +50,24 @@ const StoryPanel: React.FC<HUDProps> = ({ onFight }) => {
     }
   };
 
+  // Render a loading state if the story node is not yet loaded
   if (!currentNode) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <Box
+        sx={{
+          padding: "16px",
+          border: "2px solid black",
+          borderRadius: "8px",
+          backgroundColor: "lightgray",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100px",
+        }}
+      >
+        <Typography>Loading story...</Typography>
+      </Box>
+    );
   }
 
   return (
